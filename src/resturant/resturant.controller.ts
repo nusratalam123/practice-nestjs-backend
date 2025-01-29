@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ResturantService } from './resturant.service';
 import {  CreateRestaurantDto } from './dto/create-resturant.dto';
 import { UpdateResturantDto } from './dto/update-resturant.dto';
-import { Prisma } from '@prisma/client';
 
 @Controller('resturant')
 export class ResturantController {
