@@ -34,11 +34,54 @@ model Comment {
   createdAt DateTime @default(now())
 }
 
+
+enum Role {
+  ADMIN
+  USER
+}
+
 model User {
   id        Int       @id @default(autoincrement())
   name      String    @db.VarChar(50)
   email     String    @unique
-  posts     Post[]    // One-to-many relation with Post
-  comments  Comment[] // One-to-many relation with Comment
+  role      Role      @default(USER) // Default role is USER
+  posts     Post[]   
+  comments  Comment[] 
   createdAt DateTime  @default(now())
 }
+
+model Project{
+  id          Int         @id @default(autoincrement())  
+  name        String?      @db.VarChar(20)
+  description String?
+  startDate  DateTime?     @default(now())
+  endData    DateTime?
+  status      String
+  createdAt  DateTime      @default(now()) 
+  updatedAt  DateTime?   
+}
+
+model Employee{
+  id       Int         @id @default(autoincrement())  
+  name     String?
+  email    String      @unique
+  password String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt() 
+
+}
+
+model RestaurantTable {
+  id                  Int      @id @default(autoincrement())  
+  name                String   
+  description         String?  
+  price               Float    
+  countryName         String   
+  addressOfRestaurant String  
+  image_url           String[] 
+  dishesName          String   
+  totalBookedItem     Int      @default(0)  
+  created_at          DateTime @default(now())  
+  updated_at          DateTime @updatedAt       
+}
+
