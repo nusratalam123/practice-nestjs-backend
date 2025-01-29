@@ -28,5 +28,10 @@ async function bootstrap() {
 
   // Log the running port
   console.log(`Backend is running on http://localhost:${port}`);
+  return app;
 }
-bootstrap();
+
+// Export the app for Vercel
+export default bootstrap()
+  .then((app) => app.getHttpAdapter().getInstance())
+  .catch((err) => console.error(err));
